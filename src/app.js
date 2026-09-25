@@ -5,8 +5,8 @@ app.use(express.json());
 const notes = [];
 
 // post/notes
-app.post("/notes", (reg, res) => {
-  notes.push(reg.body);
+app.post("/notes", (req, res) => {
+  notes.push(req.body);
 
   res.status(200).json({
     message: "notes created successfully",
@@ -14,7 +14,7 @@ app.post("/notes", (reg, res) => {
 });
 
 // get/get
-app.get("/notes", (reg, res) => {
+app.get("/notes", (req, res) => {
   res.status(201).json({
     message: "note fatched successfully",
     notes: notes,
@@ -22,8 +22,8 @@ app.get("/notes", (reg, res) => {
 });
 
 // delete/notes/9
-app.delete("/notes/:index", (reg, res) => {
-  const index = reg.params.index;
+app.delete("/notes/:index", (req, res) => {
+  const index = req.params.index;
 
   delete notes[index];
 
@@ -34,10 +34,10 @@ app.delete("/notes/:index", (reg, res) => {
 
 // patch/notes
 
-app.patch("/notes/:index", (reg, res) => {
-  const index = reg.params.index;
+app.patch("/notes/:index", (req, res) => {
+  const index = req.params.index;
 
-  const description = reg.body.description;
+  const description = req.body.description;
   notes[index].description = description;
   res.status(200).json({
     message: "note updated successfully",
