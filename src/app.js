@@ -13,7 +13,7 @@ app.post("/notes", (req, res) => {
   });
 });
 
-// get/get
+// get/notes
 app.get("/notes", (req, res) => {
   res.status(201).json({
     message: "note fatched successfully",
